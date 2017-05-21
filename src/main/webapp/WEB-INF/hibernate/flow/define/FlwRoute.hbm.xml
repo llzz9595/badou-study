@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.shengdai.kpi.flow.valueobject.FlwRoute" table="FLW_ROUTE" where="flg_deleted=0">
+		<cache usage="nonstrict-read-write" />
+		<id name="routeCode" column="id" type="string">
+			<generator class="assigned" />
+		</id>
+		<many-to-one name="node" column="node_id" class="com.shengdai.kpi.flow.valueobject.FlwNode" lazy="false"/>
+		<many-to-one name="nextNode" column="NEXT_NODE_ID" class="com.shengdai.kpi.flow.valueobject.FlwNode" />
+		
+		<property name="name" column="name" type="string" />
+		<property name="priority" column="priority" type="int" />
+		<property name="flgMultiNode" column="FLG_MULTI_NODE" type="int" />
+		<property name="memo" column="memo" type="string" />		
+		<property name="flgAttribute" column="flg_Attribute" type="string" />
+		<property name="menuName" column="menu_name" type="string" />
+		<property name="flgDeleted" column="FLG_DELETED" type="int" />
+		
+		<set inverse="true" cascade="all,delete-orphan" name="routeNodes" order-by="node_priority">
+		   <key>
+		    <column length="32" name="route_id">
+		     <comment>路由ID</comment>
+		    </column>
+		   </key>
+		   <one-to-many class="com.shengdai.kpi.flow.valueobject.FlwNodeRoute"/>
+		  </set>
+		</class>
+</hibernate-mapping>

@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx" 
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+			http://www.springframework.org/schema/beans/spring-beans.xsd
+            http://www.springframework.org/schema/aop
+			http://www.springframework.org/schema/aop/spring-aop.xsd
+            http://www.springframework.org/schema/tx
+			http://www.springframework.org/schema/tx/spring-tx.xsd
+			http://www.springframework.org/schema/context
+			http://www.springframework.org/schema/context/spring-context.xsd"
+	default-autowire="byName">
+	  <!-- Struts1的页面分页拦截器 -->
+	  <!-- 这样拦截不了struts1的Action
+	 <aop:config> 
+        <aop:aspect id="struts1PageAspect" ref="struts1PageBean">
+        	<aop:pointcut id="struts1ReqPageAction"  expression="
+            			execution(* org.springframework.web.struts.DelegatingActionProxy.execute(..))" />  
+            <aop:around pointcut-ref="struts1ReqPageAction" method="doAround"/> 
+        </aop:aspect>  
+    </aop:config>   -->
+	<bean id="struts1PageBean" class="com.shengdai.kpi.common.page.aop.PageAdvice" >
+		<property name="beanNames">
+			<list>
+				<value>/list.*</value>
+				<value>/view.*</value>
+				<value>/watch.*</value>
+				<value>/query.*</value>
+				<value>/search.*</value>
+			</list>
+		</property>
+	</bean>
+	<!-- 文件上传 -->
+	<bean id="AttachAction" class="com.shengdai.kpi.attach.web.action.AttachAction" ></bean>
+	<bean name="/uploadFile" parent="AttachAction" />
+	<bean name="/downloadFile" parent="AttachAction" />
+	<bean name="/attachList" parent="AttachAction" />
+	<bean name="/deleteAttachFile" parent="AttachAction" />
+	<bean name="/listResourceAttach" parent="AttachAction" />
+	<!-- 复制粘贴附件 -->
+	<bean name="/copyAttachAjax" parent="AttachAction" />
+	<bean name="/pasteAttachAjax" parent="AttachAction" />
+	
+	<!-- 登陆,主要用于内部测试 start add by zyf -->
+	<bean name="/login" class="com.shengdai.kpi.system.security.web.LogonAction" ></bean>
+	<!-- 退出系统 -->
+	<bean name="/logout" class="com.shengdai.kpi.system.security.web.LogoutAction" ></bean>
+	<!-- 登陆,主要用于内部测试 end add by zyf -->
+	<!-- 用于统一待办 start add by zyf -->
+	<bean name="/loginAccredit" class="com.shengdai.kpi.system.security.web.LogonAction" ></bean>
+	<!-- 修改密码  by xpp -->
+	<bean name="/updatePassword" class="com.shengdai.kpi.system.security.web.LogonAction" ></bean>
+	
+	<!-- 待办事项  by xpp -->
+	<bean name="/listUndoWorklist" class="com.shengdai.kpi.flow.web.action.WorklistAction" ></bean>
+	<bean name="/listDoneWorklist" class="com.shengdai.kpi.flow.web.action.WorklistAction" ></bean>
+	
+	<!-- 字典 -->
+	<bean name="DictionaryAction" class="com.shengdai.kpi.dictionary.web.DictionaryAction" >
+	</bean>		
+    <bean name="/listDictionary" parent="DictionaryAction" />
+    <bean name="/viewDictionary" parent="DictionaryAction" />
+    <bean name="/saveDictionary" parent="DictionaryAction" />
+    <bean name="/batchDeleteDictionary" parent="DictionaryAction" />
+    <bean name="/changeDictionaryOrder" parent="DictionaryAction" />
+    
+     <!-- 一个公用的DAO -->
+    <bean id="commonDaoFactory" class="com.shengdai.kpi.common.hibernate.CommonDaoFactory">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+</beans>

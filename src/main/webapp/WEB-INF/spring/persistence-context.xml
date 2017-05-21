@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+			http://www.springframework.org/schema/beans/spring-beans.xsd
+            http://www.springframework.org/schema/aop
+			http://www.springframework.org/schema/aop/spring-aop.xsd
+            http://www.springframework.org/schema/tx
+			http://www.springframework.org/schema/tx/spring-tx.xsd"  default-autowire="byName">
+<!-- 			参考：http://my.oschina.net/ikkyuuC/blog/91247 -->
+	<bean id="propertyConfigurer"
+		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="locations">
+			<list>
+				<value>/WEB-INF/classes/jdbc/jdbc.properties</value>
+			</list>
+		</property>
+	</bean>
+		<!-- proxool数据源开始  
+		参考：http://blog.csdn.net/goodhumor/article/details/2144911-->
+		<bean id="dataSource" class="com.shengdai.common.dbpool.ProxoolDataSource" >
+			<property name="driver" value="${jdbc.driverClassName}"></property>
+			<property name="driverUrl" value="${jdbc.url}"></property>
+			<property name="user" value="${jdbc.username}"></property>
+			<property name="password" value="${jdbc.password}"></property>
+			<property name="alias" value="${jdbc.proxool.alias}"></property>
+			<property name="houseKeepingSleepTime" value="${jdbc.proxool.houseKeepingSleepTime}"></property >
+			<property name="maximumActiveTime" value="${jdbc.proxool.maximumActiveTime}"></property>
+			<property name="maximumConnectionLifetime" value="${jdbc.proxool.maximumConnectionLifetime}"></property>
+			<property name="prototypeCount" value="${jdbc.proxool.prototypeCount}"></property>
+			<property name="minimumConnectionCount" value="${jdbc.proxool.minimumConnectionCount}"></property>
+			<property name="maximumConnectionCount" value="${jdbc.proxool.maximumConnectionCount}"></property>
+			<property name="houseKeepingTestSql" value="${jdbc.proxool.houseKeepingTestSql}"></property>
+			<property name="simultaneousBuildThrottle" value="${jdbc.proxool.simultaneousBuildThrottle}"></property>
+			<property name="statistics" value="${jdbc.proxool.statistics}"></property>
+			<property name="statisticsLogLevel" value="${jdbc.proxool.statisticsLogLevel}"></property>
+			<property name="trace" value="${jdbc.proxool.trace}"></property>
+			<property name="verbose" value="${jdbc.proxool.verbose}"></property>
+		</bean>
+    <!-- JNDI数据源
+   <bean id="jndiDataSource" class="org.springframework.jndi.JndiObjectFactoryBean" lazy-init="true">
+       <property  name="jndiName">
+          <value>java:comp/env/jdbc/cms</value>
+       </property>
+   </bean> -->
+   
+    <!--  参考：http://developer.51cto.com/art/200906/131127.htm -->
+	<bean id="sessionFactory"
+			class="org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean">
+		<property name="dataSource" ref="dataSource" />
+		<property name="packagesToScan" >
+			<list>
+				<value>com.badou.project..*</value>
+				<value>com.shengdai.mobile..*</value>
+			</list>
+   		</property>
+   		<property name="mappingDirectoryLocations">
+            <list>
+                <value>${hibernate.mappingDirectory}</value>
+            </list>
+        </property>
+		<property name="hibernateProperties">
+			<props>
+                <prop key="hibernate.dialect">${hibernate.dialect}</prop>
+				<prop key="hibernate.show_sql">${hibernate.show_sql}</prop>
+				<prop key="hibernate.connection.autocommit">${hibernate.connection.autocommit}</prop> 
+				<!--<prop key="hibernate.hbm2ddl.auto">${hibernate.hbm2ddl.auto}</prop>-->
+				<prop key="net.sf.ehcache.configurationResourceName">${hibernate.cache.provider_configuration_file_resource_path}</prop>
+				<prop key="com.opensymphony.oscache.configurationResourceName">${hibernate.cache.provider_configuration_file_resource_path}</prop>
+				<prop key="hibernate.cache.provider_class">${hibernate.cache.provider_class}</prop>
+				<prop key="hibernate.cache.use_query_cache">${hibernate.cache.use_query_cache}</prop>
+				<prop key="hibernate.cache.use_second_level_cache">${hibernate.cache.use_second_level_cache}</prop>
+				<prop key="hibernate.jdbc.batch_size">${hibernate.jdbc.batch_size}</prop>
+				<prop key="hibernate.jdbc.fetch_size">${hibernate.jdbc.fetch_size}</prop>
+				<prop key="hibernate.max_fetch_depth">${hibernate.max_fetch_depth}</prop>
+			</props>
+		<!-- 	大数据类型 -->
+		</property>
+		<property name="lobHandler" ref="lobHandler"></property>
+	</bean>
+	<bean id="lobHandler" class="org.springframework.jdbc.support.lob.DefaultLobHandler" lazy-init="true" />
+</beans>

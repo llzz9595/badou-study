@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.shengdai.kpi.flow.schedule.vo.JobFlowAutoSubmit" table="JOB_FLOW_AUTOSUBMIT">
+		<id name="id" type="java.lang.String">
+			<column name="id" length="32" />
+			<generator class="uuid.hex" />
+		</id>
+		<property name="jobName" column="job_name" type="string" />
+		<property name="createTime" column="create_time" type="java.util.Date" />
+		<property name="startTime" column="start_time" type="java.util.Date" />
+		<property name="endTime" column="end_time" type="java.util.Date" />
+		<property name="spendTimes" column="spend_Times" type="long" />
+		<property name="worklistId" column="worklist_id" type="string" />
+		<property name="worklistTitle" column="worklist_TITLE" type="string" />
+		<property name="failLog" column="fail_log" type="string" />
+		<property name="status" column="status" type="int" />
+		<property name="creator" column="creator" type="string" />
+		<property name="createName" column="create_Name" type="string" />
+		<property name="serviceInfo" column="SERVICE_INFO" type="string" />
+		<property name="limitDate" column="limit_date" type="java.util.Date" />
+	</class>
+</hibernate-mapping>

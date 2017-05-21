@@ -1,0 +1,152 @@
+.font9 {  font-family: "Arial"; font-size: 9pt}
+
+.formCell{
+	BORDER-RIGHT: #d4d0c8 1px solid;
+	FONT-SIZE: 12px;
+	BORDER-BOTTOM: #d4d0c8 1px solid;
+	BORDER-LEFT: #d4d0c8 0px solid;
+	BORDER-TOP: #d4d0c8 0px solid;
+	FONT-FAMILY: "Arial"
+}
+.formCell1{
+	BORDER-RIGHT: #d4d0c8 0px solid;
+	FONT-SIZE: 12px;
+	BORDER-BOTTOM: #d4d0c8 0px solid;
+	BORDER-LEFT: #d4d0c8 0px solid;
+	BORDER-TOP: #d4d0c8 0px solid;
+	FONT-FAMILY: "Arial"
+}
+.formCell2{
+	BORDER-RIGHT: #d4d0c8 1px solid;
+	FONT-SIZE: 12px;
+	BORDER-BOTTOM: #d4d0c8 1px solid;
+	BORDER-LEFT: #d4d0c8 0px solid;
+	BORDER-TOP: #d4d0c8 0px solid;
+	FONT-FAMILY: "Arial";
+	text-align: center;
+}
+
+.formCell3{
+	BORDER-RIGHT: #d4d0c8 1px solid;
+	FONT-SIZE: 12px;
+	BORDER-BOTTOM: #d4d0c8 0px solid;
+	BORDER-LEFT: #d4d0c8 0px solid;
+	BORDER-TOP: #d4d0c8 0px solid;
+	FONT-FAMILY: "Arial";
+	text-align: center;
+}
+.form_cell_bottom
+{
+	BORDER-RIGHT: #d4d0c8 0px solid;
+	FONT-SIZE: 12px;
+	BORDER-BOTTOM: #d4d0c8 1px solid;
+	BORDER-LEFT: #d4d0c8 0px solid;
+	BORDER-TOP: #d4d0c8 0px solid;
+	FONT-FAMILY: "Arial"
+}
+.grid_head_nobg {
+	margin-top: 1px;
+	margin-right: 1px;
+	margin-bottom: 1px;
+	margin-left: 1px;
+	padding-top: 1px;
+	padding-right: 1px;
+	padding-bottom: 1px;
+	padding-left: 1px;
+	border-color: #f6f6f6 #e1e1e1 #e1e1e1 #FFFFFF;
+	border-style: solid;
+	border-top-width: 1px;
+	border-right-width: 1px;
+	border-bottom-width: 1px;
+	border-left-width: 1px;
+	text-align: center;
+	font-family: "Arial";
+	font-size: 9pt
+}
+.grid_cell
+{
+	BORDER-RIGHT: #e1e1e1 1px solid;
+	FONT-SIZE: 12px;
+	BORDER-BOTTOM: #e1e1e1 1px solid;
+	BORDER-LEFT: #e1e1e1 0px solid;
+	BORDER-TOP: #e1e1e1 0px solid;
+	FONT-FAMILY: "Arial"
+}
+.grid_cell_left
+{
+	BORDER-RIGHT: #e1e1e1 1px solid;
+	FONT-SIZE: 12px;
+	BORDER-BOTTOM: #e1e1e1 1px solid;
+	BORDER-LEFT: #e1e1e1 1px solid;
+	BORDER-TOP: #e1e1e1 0px solid;
+	FONT-FAMILY: "Arial"
+}
+
+.celltext {
+	BACKGROUND-COLOR: transparent; BORDER-BOTTOM: silver 1px ; BORDER-LEFT: silver 1px; BORDER-RIGHT: silver 1px; BORDER-TOP: silver 1px; FONT-FAMILY: Arial; FONT-SIZE: 10pt; OVERFLOW: hidden
+}
+.celltext_backcolor {
+	mso-ignore:padding;
+	windowtext;
+	font-size:9pt;
+	font-weight:400;
+	font-style:normal;
+	text-decoration:none;
+	font-family:"Arial";
+	mso-generic-font-family:auto;
+	mso-font-charset:134;
+	mso-number-format:General;
+	text-align:left;
+	vertical-align:middle;
+	border:#999999 none;
+	mso-background-source:auto;
+	mso-pattern:auto;
+	white-space:nowrap;
+	margin-top: 0px;
+	margin-right: 0px;
+	margin-bottom: 0px;
+	margin-left: 0px;
+	padding-top: 0px;
+	padding-right: 0px;
+	padding-bottom: 0px;
+	padding-left: 0px
+}
+.BodyData
+{
+	BORDER-RIGHT: #e1e1e1 1px solid;
+	FONT-SIZE: 12px;
+	BORDER-BOTTOM: #e1e1e1 1px solid;
+	BORDER-LEFT: #e1e1e1 0px solid;
+	FONT-FAMILY: "Arial";
+	
+}
+.BodyDataSpecial
+{
+        BORDER-LEFT-STYLE:none;
+        BORDER-RIGHT-STYLE:none;
+        BORDER-TOP-STYLE:none;
+        BORDER-BOTTOM-STYLE:none;
+        FONT-SIZE:12px;
+        FONT-FAMILY:"Arial"
+}
+.BodyDataLeft
+{
+	BORDER-RIGHT: #e1e1e1 1px solid;
+	FONT-SIZE: 13px;
+	BORDER-BOTTOM: #e1e1e1 1px solid;
+	BORDER-LEFT: #e1e1e1 1px solid;
+	FONT-FAMILY: "Arial"
+}
+
+.tableFont
+{
+	FONT-SIZE: 12px;
+	FONT-FAMILY: "Arial"
+}
+.grid_head {
+	color: #000000;
+	height:18pt;
+	text-align: center;
+	line-height: 18pt;
+	background-image: url('../images/bg06.jpg');
+}

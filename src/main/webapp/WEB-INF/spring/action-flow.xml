@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx" 
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+			http://www.springframework.org/schema/beans/spring-beans.xsd
+            http://www.springframework.org/schema/aop
+			http://www.springframework.org/schema/aop/spring-aop.xsd
+            http://www.springframework.org/schema/tx
+			http://www.springframework.org/schema/tx/spring-tx.xsd
+			http://www.springframework.org/schema/context
+			http://www.springframework.org/schema/context/spring-context.xsd"
+	default-autowire="byName">
+	<bean name="baseFlowAction" class="com.shengdai.kpi.flow.web.action.BaseFlowAction" abstract="true"></bean>
+<!-- RecBatchAction.java start -->
+	<bean name="recBatchAction" parent="baseFlowAction"
+		class="com.shengdai.kpi.flow.web.action.RecBatchAction">
+	</bean>
+	<bean name="/deleteBatch" parent="recBatchAction" />	
+	<bean name="/listFlowSingle" parent="recBatchAction" />	
+	<bean name="/listbosInBatch" parent="recBatchAction" />	
+	<bean name="/deleteInBatch" parent="recBatchAction" />
+	<bean name="/startFlowSingleByOrgVo" parent="recBatchAction" />
+	
+<!-- RecBatchAction.java end -->
+<!-- BatchFlowAction.java start -->
+	<bean name="batchFlowAction" class="com.shengdai.kpi.flow.web.action.BatchFlowAction" parent="baseFlowAction">
+	</bean>
+	<bean name="/listFlowsByOrgIdBusiId" parent="batchFlowAction"></bean>
+	<bean name="/listFlowTreeForTemplate" parent="batchFlowAction"></bean>
+	<bean name="/listFlowTree" parent="batchFlowAction"></bean>
+	<bean name="/addBusiParam" parent="batchFlowAction"></bean>
+	<bean name="/listFlowPage" parent="batchFlowAction"></bean>
+	<bean name="/busiParamEditPage" parent="batchFlowAction"></bean>
+	<bean name="/editBusiParam" parent="batchFlowAction"></bean>
+	<bean name="/deleteBusiParam" parent="batchFlowAction"></bean>
+	<bean name="/listFlowNode" parent="batchFlowAction"></bean>	
+	<bean name="/deleteFlow" parent="batchFlowAction"></bean>
+	<bean name="/addFlow" parent="batchFlowAction"></bean>
+	<bean name="/listFlowByOrg" parent="batchFlowAction"></bean>
+	<bean name="/editFlow" parent="batchFlowAction"></bean>
+	<bean name="/flowEditPage" parent="batchFlowAction" ></bean>
+	<bean name="/listFlowByBusi" parent="batchFlowAction"></bean>
+	<bean name="/listJobFlowByMonitor" parent="batchFlowAction"></bean>
+	<bean name="/bindFlowTemplate" parent="batchFlowAction"></bean>
+		<bean name="/showPasteToEffectFlow" parent="batchFlowAction"></bean>
+			<bean name="/pasteToEffectFlow" parent="batchFlowAction"></bean>
+	<!-- 复制/粘贴 start -->
+	<bean name="/copyData" parent="batchFlowAction"></bean>
+	<bean name="/loadCopyData" parent="batchFlowAction"></bean>
+	<bean name="/pasteData" parent="batchFlowAction"></bean>
+	<!-- 复制/粘贴 end -->
+	<!-- 流程引用 start -->
+	<bean name="/pasteToJunior" parent="batchFlowAction"></bean>
+	<!-- 流程引用 end -->
+	<bean name="/flowTreeShow" parent="batchFlowAction" />
+<!-- BatchFlowAction.java end -->
+
+<!-- NodeAction.java start -->
+	<bean name="nodeAction" parent="baseFlowAction"
+		class="com.shengdai.kpi.flow.web.action.NodeAction">
+	</bean>
+	<bean name="/addNode" parent="nodeAction" />
+	<bean name="/listNode" parent="nodeAction" />
+	<bean name="/editNodeForRoot" parent="nodeAction" />
+	<bean name="/editNode" parent="nodeAction" />
+	<bean name="/sortNode" parent="nodeAction" />
+	<bean name="/deleteNode" parent="nodeAction" />
+	<bean name="/selectDefaultViewPage" parent="nodeAction" />
+	<bean name="/nodeEditPage" parent="nodeAction" />
+	<bean name="/deleteNodeMine" parent="nodeAction" />
+	<bean name="/nodeAddPage" parent="nodeAction" />
+	
+	<bean name="/addNodeTemplate" parent="nodeAction" />
+	<bean name="/editNodeTemplate" parent="nodeAction" />
+	<bean name="/delNodeTemplate" parent="nodeAction" />
+	<bean name="/getNodeTemplateList" parent="nodeAction" />
+	<bean name="/getNodeTemplate" parent="nodeAction" />
+<!-- NodeAction.java end -->
+<!-- RouteAction.java start -->
+	<bean name="routeAction" parent="baseFlowAction"
+		class="com.shengdai.kpi.flow.web.action.RouteAction"></bean>
+	<bean name="/addRoute" parent="routeAction" />
+	<bean name="/editRoute" parent="routeAction" />
+	<bean name="/routeAddPage" parent="routeAction" />
+	<bean name="/deleteRoute" parent="routeAction" />
+	<bean name="/routeEditPage" parent="routeAction" />
+<!-- RouteAction.java end -->
+<!-- MonitorAction.java start -->
+	<bean name="monitorAction" parent="baseFlowAction"
+			class="com.shengdai.kpi.flow.web.action.MonitorAction">
+	</bean>
+	<bean name="/watchMonitor" parent="monitorAction"/>
+	<bean name="/watchMonitorStart"  parent="monitorAction"/>
+	<bean name="/nextRecBatchStart"  parent="monitorAction"/>
+	<bean name="/monitorStartLog" parent="monitorAction"/> 
+	<bean name="/monitorStartSelectOrgVo" parent="monitorAction"/>		
+	<bean name="/startNextRecBatchWithThread" parent="monitorAction"/>
+	<bean name="/undoFlowStartJob" parent="monitorAction"/>	
+	<bean name="/viewFlowStartJob" parent="monitorAction"/>			
+	<bean name="/monitorStartOrgVoLog" parent="monitorAction"/>	
+	<bean name="/startFlowSingleAddOrgVo" parent="monitorAction" />
+<!-- MonitorAction.java end -->
+<!-- SpreadAction.java start -->	
+	<bean name="spreadAction" parent="baseFlowAction"
+		class="com.shengdai.kpi.flow.web.action.SpreadAction" >
+	</bean>
+	<bean name="/spread" parent="spreadAction" />
+	<bean name="/listSpread" parent="spreadAction" />
+	<bean name="/changeSpread" parent="spreadAction" />
+	<bean name="/openSpread" parent="spreadAction" />
+	<bean name="/changeSpreadStatus" parent="spreadAction" />
+<!-- SpreadAction.java end -->
+<!-- ViewDictionaryAction.java start -->
+	<!-- 视图管理 start -->
+	<bean name="viewDictionaryAction" 
+		class="com.shengdai.kpi.flow.web.action.ViewDictionaryAction"  parent="baseFlowAction">
+	</bean>
+	<bean name="/listViewDictionary" parent="viewDictionaryAction" />
+	<bean name="/saveViewDictionary" parent="viewDictionaryAction" />
+	<bean name="/delViewDictionary" parent="viewDictionaryAction" />
+	<bean name="/showViewDictionary" parent="viewDictionaryAction" />
+	<!-- 视图管理 end -->
+<!-- ViewDictionaryAction.java end -->
+<!-- WorklistAction.java start -->
+	<!-- 工作列表，待办已办等 -->
+	<bean name="worklistAction" parent="baseFlowAction"
+		class="com.shengdai.kpi.flow.web.action.WorklistAction" ></bean>
+	<bean name="/listWorklistForRecBatch" parent="worklistAction" />
+	<bean name="/unOA" parent="worklistAction" />
+	<bean name="/doOA" parent="worklistAction" />
+	<bean name="/listUndoWorklist" parent="worklistAction" />	
+	<bean name="/findWorklistInfoAjax" parent="worklistAction" />
+	<bean name="/listDoneWorklist" parent="worklistAction" />
+	<bean name="/openDoneWorklist" parent="worklistAction" />
+	<bean name="/openDoneWorklistNotBatch" parent="worklistAction" />
+	<bean name="/openUndoWorklist" parent="worklistAction" />
+	<bean name="/openUndoWorklistNotBatch" parent="worklistAction" />
+	<bean name="/listFlowNodeDetailForDelegate" parent="worklistAction" />
+	<!-- new version add by zyf start -->
+	<bean name="/undoMain" parent="worklistAction" />
+	<bean name="/undoMainUUV" parent="worklistAction" />
+	<bean name="/getUndoForOA" parent="worklistAction"/>
+	<!-- ln use version -->
+	<bean name="/undoMainByBusiType" parent="worklistAction"/>
+	<bean name="/commentByBusiType" parent="worklistAction"/>
+<!-- WorklistAction.java end -->	
+<!-- workFlowAction.java start -->
+	<!--待办提交，转办操作等 -->
+	<bean name="workFlowAction" parent="baseFlowAction"
+		class="com.shengdai.kpi.flow.web.action.WorkFlowAction" >
+	</bean>
+	<bean name="/turningItem" parent="workFlowAction" />
+	<bean name="/submitBack" parent="workFlowAction" />
+	<bean name="/submitBackSync" parent="workFlowAction" />
+	<bean name="/startFlow" parent="workFlowAction" />
+	<bean name="/submitNext" parent="workFlowAction" />
+	<bean name="/submitNextSync" parent="workFlowAction" />
+	<bean name="/batchSubmitNext" parent="workFlowAction" />
+	<bean name="/submitArchive" parent="workFlowAction" />
+	<bean name="/submitArchiveSync" parent="workFlowAction" />
+	<bean name="/transferWorklistItem" parent="workFlowAction" />
+	<bean name="/submitOptionsPage" parent="workFlowAction" />
+<!-- workFlowAction.java end -->	
+<!-- AccreditAction.java start -->	
+	<!-- 授权 start -->
+	<bean name="accreditAction" parent="baseFlowAction"
+		class="com.shengdai.kpi.flow.web.action.AccreditAction">
+	</bean>
+	<bean name="/listAccredits" parent="accreditAction"></bean>
+	<bean name="/viewAccredit" parent="accreditAction"></bean>
+	<bean name="/saveAccredit" parent="accreditAction"></bean>
+	<bean name="/delAccredit" parent="accreditAction"></bean>
+	<bean name="/listAccreditUndo" parent="accreditAction"></bean>
+	<bean name="/callbackAccreditUndo" parent="accreditAction"></bean>
+	<bean name="/isExistAccredit" parent="accreditAction"></bean>
+
+<!-- AccreditAction.java end -->
+	
+<!-- RecOpinionAction.java start -->
+	<!-- 意见 start -->
+	<bean name="recOpinionAction" parent="baseFlowAction"
+		class="com.shengdai.kpi.flow.web.action.RecOpinionAction" >
+	</bean>
+	<bean name="/listFlowOpinions" parent="recOpinionAction" />
+	<bean name="/listOpinions" parent="recOpinionAction" />
+	<bean name="/createOpinion" parent="recOpinionAction" />
+	<!-- 意见 end -->
+<!-- RecOpinionAction.java end -->
+
+</beans>

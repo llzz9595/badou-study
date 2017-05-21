@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Struts2Diagram version="2.0">
+  <package name="struts-convention-sdcoc" location="0,0" size="0,0" />
+  <include file="struts-default.xml" location="0,0" size="0,0" />
+  <include file="struts-plugin.xml" location="0,0" size="0,0" />
+  <include file="struts-plugin.xml" location="0,0" size="0,0" />
+  <include file="struts-plugin.xml" location="0,0" size="0,0" />
+  <include file="struts-plugin.xml" location="0,0" size="0,0" />
+  <include file="struts-plugin.xml" location="0,0" size="0,0" />
+  <include file="struts-plugin.xml" location="0,0" size="0,0" />
+  <include file="struts-plugin.xml" location="0,0" size="0,0" />
+  <include file="struts-plugin.xml" location="0,0" size="0,0" />
+</Struts2Diagram>
+

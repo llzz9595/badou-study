@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.shengdai.kpi.flow.valueobject.RecNode" table="REC_NODE">
+		<cache usage="read-write" />
+		<id name="id" type="java.lang.String">
+			<column name="id" length="32" />
+			<generator class="uuid.hex"/>
+		</id>
+		<many-to-one name="recFlow" column="rec_flow_id" class="com.shengdai.kpi.flow.valueobject.RecFlow" />
+		<property name="nodeId" column="NODE_ID" type="string" />
+		<property name="nodeName" column="NODE_NAME" type="string" />
+		<property name="nodeCode" column="NODE_CODE" type="string" />
+		<property name="handlerWay" column="HANDLE_WAY" type="int" />
+		<property name="handler" column="HANDLER" type="string" />
+		<property name="spreadHandler" column="SPREAD_HANDLER" type="string" />
+		<property name="priority" column="PRIORITY" type="int" />
+		<property name="flgHead" column="FLG_HEAD" type="int" />
+		<property name="flgRoot" column="FLG_ROOT" type="int" />
+		<property name="flgSpread" column="FLG_SPREAD" type="int" />
+		<property name="viewId" column="VIEW_ID" type="string" />
+		<property name="viewName" column="VIEW_NAME" type="string" />
+		<property name="flgSubmitSync" column="FLG_SUBMIT_SYNC" type="int" />
+		<property name="createDate" column="CREATE_DATE" type="java.util.Date" />
+	</class>
+</hibernate-mapping>

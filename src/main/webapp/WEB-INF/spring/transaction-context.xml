@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx" 
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+			http://www.springframework.org/schema/beans/spring-beans.xsd
+            http://www.springframework.org/schema/aop
+			http://www.springframework.org/schema/aop/spring-aop.xsd
+            http://www.springframework.org/schema/tx
+			http://www.springframework.org/schema/tx/spring-tx.xsd
+			http://www.springframework.org/schema/context
+			http://www.springframework.org/schema/context/spring-context.xsd"
+	default-autowire="byName">
+	
+<!-- Spring的事务管理 -->
+<!-- 注解式事务-->
+<!-- <tx:annotation-driven transaction-manager="transactionManager" /> -->	
+	<bean id="transactionManager" class="org.springframework.orm.hibernate3.HibernateTransactionManager">
+        <property name="sessionFactory"><ref bean="sessionFactory"/></property>
+    </bean>
+	<tx:advice id="txProxyTemplate" transaction-manager="transactionManager">
+		<tx:attributes>
+			<!-- 事务级别方法前缀配置,除已配置的前缀方法，其它方法都为只读事务，比如get,find等开头的方法 -->
+			<!-- 一般来讲除非有特殊要求，以下配置的方法已适用于绝大多数情况(可修改事务方法名为该前缀)，可以添加新的前缀 -->
+		   <tx:method name="add*" propagation="REQUIRED" rollback-for="Exception"/>
+		   <tx:method name="update*" propagation="REQUIRED" rollback-for="Exception"/>
+		   <tx:method name="delete*" propagation="REQUIRED" rollback-for="Exception"/>
+		   <tx:method name="create*" propagation="REQUIRED" rollback-for="Exception"/>
+		   <tx:method name="save*" propagation="REQUIRED" rollback-for="Exception"/>
+		   <tx:method name="batch*" propagation="REQUIRED" rollback-for="Exception"/>
+		   <tx:method name="bind*" propagation="REQUIRED" rollback-for="Exception"/>
+		   <tx:method name="un*" propagation="REQUIRED" rollback-for="Exception"/>
+		   <tx:method name="auto*" propagation="REQUIRED" rollback-for="Exception"/>
+		   <tx:method name="start*" propagation="REQUIRED" rollback-for="Exception"/>
+		   <tx:method name="submit*" propagation="REQUIRED" rollback-for="Exception"/>
+		   <tx:method name="next*" propagation="REQUIRED" rollback-for="Exception"/>
+		   <tx:method name="import*" propagation="REQUIRED" rollback-for="Exception"/>
+		   <tx:method name="export*" propagation="REQUIRED" rollback-for="Exception"/>
+		   <tx:method name="copy*" propagation="REQUIRED" rollback-for="Exception"/>
+		   <tx:method name="paste*" propagation="REQUIRED" rollback-for="Exception"/>
+		   <tx:method name="change*" propagation="REQUIRED" rollback-for="Exception"/>
+		   <tx:method name="send*" propagation="REQUIRED" rollback-for="Exception"/>
+		   <tx:method name="init*" propagation="REQUIRED" rollback-for="Exception"/>
+		   <tx:method name="build*" propagation="REQUIRED" rollback-for="Exception"/>
+		   <tx:method name="execute*" propagation="REQUIRED" rollback-for="Exception"/>
+		   <tx:method name="sync*" propagation="REQUIRED" rollback-for="Exception"/>
+		   <tx:method name="replace*" propagation="REQUIRED" rollback-for="Exception"/>
+		   <tx:method name="transfer*" propagation="REQUIRED" rollback-for="Exception"/>
+		   <tx:method name="freeze*" propagation="REQUIRED" rollback-for="Exception"/>
+		   <tx:method name="resume*" propagation="REQUIRED" rollback-for="Exception"/>
+		   <tx:method name="*" read-only="true"/>
+  		</tx:attributes>
+	</tx:advice>
+
+	<aop:config>
+		<aop:pointcut id="tutorial-application"
+			expression="execution(public * com.shengdai..*Service.*(..))" />
+		<aop:advisor advice-ref="txProxyTemplate" pointcut-ref="tutorial-application" />
+	</aop:config>
+	
+	<aop:config>
+		<aop:pointcut id="tutorial-application-badou"
+			expression="execution(public * com.badou..*Service.*(..))" />
+		<aop:advisor advice-ref="txProxyTemplate" pointcut-ref="tutorial-application-badou" />
+	</aop:config>
+</beans>

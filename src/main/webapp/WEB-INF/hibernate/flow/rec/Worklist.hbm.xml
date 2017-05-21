@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.shengdai.kpi.flow.valueobject.Worklist" table="REC_WL" where="flg_deleted=0">
+		<id name="id" type="java.lang.String">
+			<column name="id" length="32" />
+			<generator class="uuid.hex" />
+		</id>
+		<property name="batchId" column="batch_id" type="string" />
+		<property name="busiId" column="busiid" type="string" />
+		<property name="handlerId" column="handler_id" type="string" />
+		<property name="handlerName" column="handler_name" type="string" />
+		<property name="handlerUcId" column="handler_uc_id" type="string" />
+		<property name="flowId" column="flow_id" type="string" />	
+		<property name="flowName" column="flow_NAME" type="string" />
+		<property name="nodeId" column="node_id" type="string" />
+		<property name="nodeName" column="node_name" type="string" />
+		<property name="boId" column="bo_id" type="string" />	
+		<property name="boName" column="bo_name" type="string" />
+		<property name="createDate" column="create_date" type="java.util.Date" />
+		<property name="compDate" column="comp_date" type="java.util.Date" />
+		<property name="limitDate" column="limit_date" type="java.util.Date" />
+		<property name="title" column="title" type="string" />
+		<property name="status" column="status" type="int" />
+		<property name="flgDeleted" column="flg_deleted" type="int" />
+		
+	</class>
+</hibernate-mapping>

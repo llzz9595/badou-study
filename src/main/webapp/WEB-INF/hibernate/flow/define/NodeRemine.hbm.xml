@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.shengdai.kpi.flow.valueobject.NodeRemine" table="FLW_NODE_REMIND" lazy="false">
+		<cache include="all" usage="read-write"/>
+	  <id name="id" type="string">
+	   <column length="32" name="ID"/>
+	   <generator class="uuid.hex"/>
+	  </id>
+		<many-to-one name="flwNode" column="FLOW_OR_NODE_ID" class="com.shengdai.kpi.flow.valueobject.FlwNode" not-found="ignore" />
+		<property name="firstTimes" column="first_times" type="int" />
+		<property name="frequencyRelativeCycle" column="frequency_relative_cycle" type="int" />		
+		<property name="frequencyCycle" column="frequency_cycle" type="int" />		
+		<property name="limitFrequency" column="limit_frequency" type="int" />		
+		<property name="limitFrequencyUnit" column="limit_frequency_unit" type="int" />	
+		<property name="frequency" column="frequency" type="int" />
+		<property name="frequencyUnit" column="frequency_unit" type="int" />
+		<property name="type" column="type" type="int" />
+		<property name="frequencyMonth" column="FREQUENCY_MONTH" type="int" />
+		<property name="frequencyDay" column="FREQUENCY_DAY" type="int" />
+		<property name="frequencyHour" column="FREQUENCY_HOUR" type="int" />
+		<property name="way" column="way" type="int" />
+		<property name="reminder" column="reminder" type="int" />
+		<property name="flgUse" column="flg_use" type="int" />
+		<property name="remineContent" column="remine_content" type="string" />								
+		<property name="createDate" column="create_date" type="java.util.Date" />
+	</class>
+</hibernate-mapping>

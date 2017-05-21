@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.shengdai.kpi.flow.valueobject.RecFlow" table="REC_FLOW" where="flg_deleted=0">
+		<cache usage="read-write" />
+		<id name="id" type="java.lang.String">
+			<column name="id" length="32" />
+			<generator class="uuid.hex" />
+		</id>
+		<many-to-one name="recBatch" column="batch_id" class="com.shengdai.kpi.flow.valueobject.RecBatch" />
+		<property name="groupId" column="group_id" type="string" />
+		<property name="flowCode" column="flow_id" type="string" />
+		<property name="flowName" column="flow_name" type="string" />
+		<property name="boId" column="bo_id" type="string" />
+		<property name="boClass" column="bo_class" type="string" />
+		<many-to-one name="parentRecNode" column="parent_rec_node" class="com.shengdai.kpi.flow.valueobject.RecNode" />
+		<property name="genPersonId" column="CREATOR" type="string" />
+		<property name="genDate" column="CREATE_DATE" type="timestamp" />
+		<property name="creatorName" column="CREATOR_NAME" type="string" />
+		<property name="completedate" column="ARCHIVE_DATE" type="timestamp" />
+		<property name="flgDeleted" column="FLG_DELETED" type="int" />
+		<property name="busiType" column="BUSI_TYPE" type="string" />
+		
+		<set name="recNodeSet" inverse="true" cascade="delete"  order-by="create_date">
+			<cache usage="read-write" />
+			<key column="rec_flow_id" />
+			<one-to-many class="com.shengdai.kpi.flow.valueobject.RecNode" />
+		</set>
+	</class>
+</hibernate-mapping>

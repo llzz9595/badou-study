@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.1.7//EN"
+    "http://struts.apache.org/dtds/struts-2.1.7.dtd">
+<struts>
+	<include file="struts-default.xml" />
+	<include file="struts-plugin.xml" />
+	<bean type="org.apache.struts2.convention.ActionConfigBuilder" name="sdconvention" class="com.shengdai.plugin.struts2.convention.PackageBasedActionConfigBuilder7"/>
+	<bean type="org.apache.struts2.convention.ResultMapBuilder" name="sdconvention" class="com.shengdai.plugin.struts2.result.DefaultResultMapBuilder"/>
+	<bean type="org.apache.struts2.dispatcher.mapper.ActionMapper" name="sdstruts" class="com.shengdai.plugin.struts2.SlashesActionMapper" />
+	<bean type="com.opensymphony.xwork2.UnknownHandler" name="sdconvention" class="com.shengdai.plugin.struts2.result.DefaultResultUnknownHandler" />
+	
+	<!-- 改变请求映射(uri解析)类 -->
+	<constant name="struts.mapper.class" value="sdstruts" />
+	<!-- Action创建 -->
+	<constant name="struts.convention.actionConfigBuilder" value="sdconvention"/>
+	<constant name="struts.convention.resultMapBuilder" value="sdconvention"/>
+	<!-- 请求后缀表达式, 默认是action、do、struts、struts2,一般可改为应用自己的 
+	如果用户需要指定多个请求后缀，则多个后缀直接可以用英文逗号隔开-->
+	<constant name="struts.action.extension" value="do" />
+	<!-- 是否调试模试,默认false,开发时，可用true，以便打印更多信息 -->
+	<constant name="struts.devMode" value="false" />
+	<!-- 可以设置 struts内部进行各种字符编码处理时的字符集编码  --> 
+	<constant name="struts.i18n.encoding" value="UTF-8" />
+	<!-- 国际化 -->
+	<constant name="struts.custom.i18n.resources" value="i18n.messageResources,i18n.course.messageResources,
+	   i18n.top.messageResources" />
+	<!-- convention默认会到/WEB-INF/content文件夹下面查找对应的结果页面 -->
+    <constant name="struts.convention.result.path" value="/WEB-INF/jsp" />
+    <!-- 返回视图页面后缀 -->
+    <constant name="struts.convention.result.path.suffix" value="jsp" />
+    <!-- convention默认的action请求分隔符是-，这里改为默认空 -->
+    <constant name="struts.convention.action.name.separator" value="" />
+	<!-- 全局的上传文件大小限制，默认2M -->
+	<constant name="struts.multipart.maxSize" value="31457280" />
+	 <!-- 设置Convention插件文件协议类型 -->
+    <constant name="struts.convention.action.fileProtocols" value="jar,wsjar" />
+    <!-- 设置Convention插件需要搜索的jar包 -->
+	<constant name="struts.convention.action.includeJars" value=".*?/sdappframework_appbase*.*?jar(!/)?" /> 
+	<!-- 配置文件修改后，是否重新加载,默认false,开发模式下可为true，生产为false -->
+	<constant name="struts.configuration.xml.reload" value="true" />
+	<!-- ognl表达式是否可调用静态方法 -->
+	<constant name="struts.ognl.allowStaticMethodAccess" value="true" />
+	<!-- 注解扫描地址 ,多个以英文逗号分隔-->
+	<constant name="struts.convention.package.locators" value="web"/>
+	<!-- 注解扫描排除地址 ,多个以英文逗号分隔-->
+	<constant name="struts.convention.exclude.packages" value="com.shengdai.kpi.*"/>
+	<!-- 注解命名空间解析包前缀,多个以英文逗号分隔 -->
+	<constant name="struts.convention.package.namespace.locators.basePackages" value="com.badou.project,com.shengdai.brms,com.shengdai.bpms,com.shengdai.mobile"/>
+
+	<package name="struts-convention-sdcoc" extends="convention-default,json-default">
+		<result-types>
+            <result-type name="excel" class="com.shengdai.plugin.struts2.result.ExcelStreamResult"/>
+        </result-types>
+		<!-- 统一拦截器定制 -->
+		<interceptors>
+			<interceptor name="pagination"
+				class="com.shengdai.plugin.struts2.interceptor.PaginationListInterceptor" />
+			<interceptor name="sdcoc"
+				class="com.shengdai.plugin.struts2.interceptor.SdCocInterceptor" />	
+			<interceptor name="messagePush" class="com.shengdai.mobile.smack.messageConsole.MessageDistributeCenter"></interceptor>
+		 	<!-- 所有页面都有的拦截器 -->
+		 	<interceptor-stack name="baseStack">
+		 		<interceptor-ref name="params" />
+		 		<interceptor-ref name="exception"/>
+                <interceptor-ref name="alias"/>
+                <interceptor-ref name="servletConfig"/>
+                <interceptor-ref name="i18n"/>
+                <interceptor-ref name="prepare"/>
+                <interceptor-ref name="actionMappingParams"/>
+                <interceptor-ref name="sdcoc"/>
+                 <interceptor-ref name="debugging"/>
+		 	</interceptor-stack>
+		 	<interceptor-stack name="baseJsonStack">
+		 		<interceptor-ref name="params" />
+		 		<interceptor-ref name="exception"/>
+                <interceptor-ref name="alias"/>
+                <interceptor-ref name="servletConfig"/>
+                <interceptor-ref name="i18n"/>
+                <interceptor-ref name="prepare"/>
+                <interceptor-ref name="actionMappingParams"/>
+                <interceptor-ref name="json"/>
+                <interceptor-ref name="sdcoc"/>
+                 <interceptor-ref name="debugging"/>
+		 	</interceptor-stack>
+		 	<interceptor-stack name="pageStack">
+				<interceptor-ref name="basicStack"/>
+				<interceptor-ref name="pagination"/>
+		 	</interceptor-stack>
+		 	<interceptor-stack name="pageJsonStack">
+				<interceptor-ref name="baseJsonStack"/>
+				<interceptor-ref name="pagination"/>
+		 	</interceptor-stack>
+		 	<interceptor-stack name="pushJsonStack">
+				<interceptor-ref name="messagePush" />
+				<interceptor-ref name="baseJsonStack" />
+			</interceptor-stack>
+			<interceptor-stack name="pushPageJsonStack">
+				<interceptor-ref name="messagePush" />
+				<interceptor-ref name="pagination" />
+				<interceptor-ref name="baseJsonStack" />
+			</interceptor-stack>
+		</interceptors>
+		<default-interceptor-ref name="baseStack"/>
+		
+		<default-class-ref class="com.shengdai.plugin.struts2.SdCocActionSupport" />
+		
+		<global-results>
+			<result name="eerror" type="dispatcher">/pub/exception.jsp</result>
+			<result name="ewarn" type="dispatcher">/pub/warning.jsp</result>
+		</global-results>
+		
+		<global-exception-mappings>
+			<exception-mapping result="eerror" exception="java.lang.Exception" />
+		</global-exception-mappings>
+		
+		
+	</package>
+</struts>

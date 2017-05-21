@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="badou-study:war">
+    <output-path>$PROJECT_DIR$/target</output-path>
+    <root id="archive" name="badou-study-0.0.1-SNAPSHOT.war">
+      <element id="artifact" artifact-name="badou-study:war exploded" />
+    </root>
+  </artifact>
+</component>

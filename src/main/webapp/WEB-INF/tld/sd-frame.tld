@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE taglib
+  PUBLIC "-//Sun Microsystems, Inc.//DTD JSP Tag Library 1.1//EN"
+  "http://java.sun.com/j2ee/dtds/web-jsptaglibrary_1_1.dtd">
+<taglib>
+	<tlibversion>1.0</tlibversion>
+	<jspversion>1.1</jspversion>
+	<shortname>Shengdai Application Tag Library</shortname>
+	<uri>http://brms.shengdai.com/jstl/frame</uri>
+	<info>盛代开源应用框架标签库[框架展示]</info>
+	<tag>
+		<name>toolbar</name>
+		<tagclass>com.shengdai.erp.common.tags.frame.ToolbarTag</tagclass>
+		<bodycontent>empty</bodycontent>
+		<info>工具条</info>
+		<attribute>
+			<name>menuCode</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<attribute>
+			<name>pageType</name>
+			<required>false</required>
+			<rtexprvalue>false</rtexprvalue>
+		</attribute>
+	</tag>
+	
+</taglib>

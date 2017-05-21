@@ -1,0 +1,247 @@
+<?xml version="1.0"?>
+<!DOCTYPE taglib PUBLIC
+    "-//Sun Microsystems, Inc.//DTD JSP Tag Library 1.1//EN"
+    "http://java.sun.com/j2ee/dtds/web-jsptaglibrary_1_1.dtd">
+<taglib>
+	<tlibversion>1.0</tlibversion>
+	<jspversion>1.1</jspversion>
+	<shortname>page</shortname>
+	<uri>http://www.shengdaioss.com/tags-page</uri>
+	<info>tool</info>
+	<tag>
+		<name>route</name><!-- 显示可用的路由操作，在业务提交界面 -->
+		<tagclass>com.shengdai.kpi.flow.web.RoutesTag</tagclass>
+		<bodycontent>empty</bodycontent>
+		<attribute>
+			<name>style</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+	</tag>
+	<tag>
+		<name>flowInfo</name><!-- 显示可用的路由操作，在业务提交界面 -->
+		<tagclass>com.shengdai.kpi.flow.web.FlowInfoTag</tagclass>
+		<bodycontent>empty</bodycontent>
+		<attribute>
+			<name>style</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+	</tag>
+
+	<tag>
+		<name>scorePolicy</name><!-- 显示分制 -->
+		<tagclass>com.shengdai.kpi.assess.web.ScorePolicyTag</tagclass>
+		<bodycontent>empty</bodycontent>
+		<attribute>
+			<name>name</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<attribute>
+			<name>id</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<attribute>
+			<name>value</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+	</tag>
+
+	<tag>
+		<name>hasFieldAuth</name><!-- 用户对域有权限 -->
+		<tagclass>com.shengdai.kpi.system.web.FieldAuthTag</tagclass>
+		<attribute>
+			<name>fieldNo</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<attribute>
+			<name>type</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+	</tag>
+
+	<tag>
+		<name>hasNoFieldAuth</name><!-- 用户对域没有权限 -->
+		<tagclass>com.shengdai.kpi.system.web.FieldNoAuthTag</tagclass>
+		<attribute>
+			<name>fieldNo</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<attribute>
+			<name>type</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+	</tag>
+
+	<tag>
+		<name>spread</name><!-- 显示传阅按钮 -->
+		<tagclass>com.shengdai.kpi.flow.web.SpreadTag</tagclass>
+		<attribute>
+			<name>boId</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<attribute>
+			<name>boClass</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<attribute>
+			<name>nodeCode</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+	</tag>
+	
+	<tag>
+		<name>clone</name><!-- 显示复制，粘贴按钮 -->
+		<tagclass>com.shengdai.kpi.common.tag.DataCloneTag</tagclass>
+		<bodycontent>empty</bodycontent>
+		<attribute>
+			<name>name</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<attribute>
+			<name>style</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>		
+	</tag>
+
+	<tag>
+		<name>permit</name><!-- 权限控制 -->
+		<tagclass>com.shengdai.kpi.common.tag.PermissionTag</tagclass>
+		<bodycontent>JSP</bodycontent>
+		<attribute>
+			<name>style</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>		
+		<attribute>
+			<name>resourceId</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>	
+		<attribute>
+			<name>permission</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<attribute>
+			<name>cid</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<attribute>
+			<name>cname</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<attribute>
+			<name>cvalue</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<attribute>
+			<name>csize</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<attribute>
+			<name>ccssClass</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<attribute>
+			<name>conclick</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+	</tag>
+	
+	
+	<tag>
+		<name>batch</name><!-- 显示复制，粘贴按钮 -->
+		<tagclass>com.shengdai.kpi.common.tag.SingleCalendarTag</tagclass>
+		<bodycontent>empty</bodycontent>
+		<attribute>
+			<name>batch</name> <!--格式： //格式 2007，6 -->
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+	</tag>
+	<tag>
+		<name>doubleBatch</name><!-- 显示复制，粘贴按钮 -->
+		<tagclass>com.shengdai.kpi.common.tag.DoubleDateSelectTag</tagclass>
+		<bodycontent>empty</bodycontent>
+		<attribute>
+			<name>batch1</name> <!--格式： //格式 2007，6 -->
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<attribute>
+			<name>batch2</name> <!--格式： //格式 2007，6 -->
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+	</tag>
+	<tag>
+		<name>doubleMonBatch</name><!-- 显示复制，粘贴按钮 -->
+		<tagclass>com.shengdai.kpi.common.tag.DoubleDateSelectMonTag</tagclass>
+		<bodycontent>empty</bodycontent>
+		<attribute>
+			<name>batch1</name> <!--格式： //格式 2007，6 -->
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<attribute>
+			<name>batch2</name> <!--格式： //格式 2007，6 -->
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+	</tag>
+	<tag>
+		<name>doubleYearBatch</name><!-- 显示复制，粘贴按钮 -->
+		<tagclass>com.shengdai.kpi.common.tag.DoubleDateSelectYearTag</tagclass>
+		<bodycontent>empty</bodycontent>
+		<attribute>
+			<name>batch1</name> <!--格式： //格式 2007，6 -->
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<attribute>
+			<name>batch2</name> <!--格式： //格式 2007，6 -->
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+	</tag>
+	<tag>
+		<name>singleBatch</name><!-- 显示复制，粘贴按钮 -->
+		<tagclass>com.shengdai.kpi.common.tag.SingleDateSelectTag</tagclass>
+		<bodycontent>empty</bodycontent>
+		<attribute>
+			<name>batch1</name> <!--格式： //格式 2007，6 -->
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+	</tag>
+	<tag>
+		<name>singleBatchLN</name><!-- 显示复制，粘贴按钮 -->
+		<tagclass>com.shengdai.kpi.ln.common.tag.SingleDateSelectTagLN</tagclass>
+		<bodycontent>empty</bodycontent>
+		<attribute>
+			<name>batch1</name> <!--格式： //格式 200911 -->
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+	</tag>	
+</taglib>
+

@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- 环节与路由的多对多关系 -->
+<hibernate-mapping>
+	<class name="com.shengdai.kpi.flow.valueobject.FlwNodeRoute" table="FLW_NODE_ROUTE">
+		<cache usage="nonstrict-read-write" />
+		 <id name="id" type="java.lang.String">
+            <column name="ID" length="32" />
+            <generator class="uuid.hex" />
+        </id>
+		<many-to-one name="node" column="node_id" class="com.shengdai.kpi.flow.valueobject.FlwNode" />
+		<many-to-one name="route" column="route_id" class="com.shengdai.kpi.flow.valueobject.FlwRoute" />
+		<property name="nodePriority" column="node_priority" type="int" />
+		<property name="routePriority" column="route_priority" type="int" />
+	</class>
+</hibernate-mapping>
